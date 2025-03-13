@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Mard Mentality</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #222;
+            color: white;
+            padding: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+        }
+        h1 {
+            color: #f39c12;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .mood-btn { background-color: #3498db; color: white; }
+        .mood-btn:hover { background-color: #2980b9; }
+        .roast-btn { background-color: #e74c3c; color: white; }
+        .roast-btn:hover { background-color: #c0392b; }
+        .diary-input { width: 100%; padding: 10px; margin-top: 10px; }
+        .memes { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>The Mard Mentality 🚹</h1>
+        <p>"Mard ko dard hota hai, bas society maan nahi rahi!"</p>
+        
+        <label>How do you feel today?</label>
+        <button class="mood-btn" onclick="checkMood('good')">Good 😎</button>
+        <button class="mood-btn" onclick="checkMood('meh')">Meh 😑</button>
+        <button class="mood-btn" onclick="checkMood('bad')">Bad 😔</button>
+        
+        <div class="result" id="moodResult"></div>
+
+        <button class="roast-btn" onclick="generateRoast()">🔥 Roast Society 🔥</button>
+        <div class="quote" id="roastQuote"></div>
+
+        <h2>Mard Ki Diary 📖</h2>
+        <textarea id="diary" class="diary-input" placeholder="Write your thoughts..."></textarea>
+        <button class="mood-btn" onclick="saveDiary()">Save Entry</button>
+        <p id="savedMessage"></p>
+
+        <h2>Leaderboard 🏆</h2>
+        <p id="leaderboard"></p>
+
+        <h2>AI Chatbot 🤖</h2>
+        <button class="mood-btn" onclick="chatbotReply()">Ask for Savage Advice</button>
+        <p id="chatbotResponse"></p>
+
+        <h2>Memes to Cope 😂</h2>
+        <button class="mood-btn" onclick="loadMeme()">Show Meme</button>
+        <div class="memes" id="memeContainer"></div>
+    </div>
+
+    <script>
+        const roasts = [
+            "Men don’t cry? Bro, log bas rone nahi dete, warna asli rona toh EMI bharne waala hota hai.",
+            "Beta, ghar chalane ka zimmedari sirf ladkon pe hi kyu? Society: Kyunki tujhe duniya ka bojh uthana hai, Superman!",
+            "Mental health? Beta, mard hai toh adjust kar, warna log bolenge bechara kya zindagi jee raha hai.",
+            "Mard ko dard hota hai... bas usko bolne nahi diya jata kyunki 'strong' dikhna zaroori hai.",
+            "Ladki sad hai: 'Are you okay, queen?' Ladka sad hai: 'Bhai, masti mazak mat kar!' "
+        ];
+
+        function checkMood(feeling) {
+            const moods = {
+                "good": "Bro, enjoy life, but duniya will try to break your peace! 😂",
+                "meh": "Aadha tension lene ka, aadha dosto pe chhodne ka. Society ke expectations ki mat sun! ✌️",
+                "bad": "Tera dukh valid hai, bas sab log ignore karenge. Par tu apne liye stand le sakta hai! 💪"
+            };
+            document.getElementById('moodResult').innerText = moods[feeling];
+        }
+
+        function generateRoast() {
+            let randomIndex = Math.floor(Math.random() * roasts.length);
+            document.getElementById('roastQuote').innerText = roasts[randomIndex];
+        }
+
+        function saveDiary() {
+            let diaryEntry = document.getElementById('diary').value;
+            localStorage.setItem('mardDiary', diaryEntry);
+            document.getElementById('savedMessage').innerText = "Diary Saved! 📝";
+        }
+
+        function chatbotReply() {
+            let replies = ["Bro, life ek video game hai, bas cheat codes nahi diye gaye.", "Tension mat le, duniya waise bhi bas TRP ke liye tujhe judge karegi.", "Society tujhe kya keh rahi hai, usse ignore kar. Tu kya chahata hai, woh soch! 💪"];
+            let randomIndex = Math.floor(Math.random() * replies.length);
+            document.getElementById('chatbotResponse').innerText = replies[randomIndex];
+        }
+
+        function loadMeme() {
+            let memes = [
+                "https://i.imgflip.com/5z7z5j.jpg",
+                "https://i.imgflip.com/3vzejc.jpg",
+                "https://i.imgflip.com/3vzeo1.jpg"
+            ];
+            let randomIndex = Math.floor(Math.random() * memes.length);
+            document.getElementById('memeContainer').innerHTML = `<img src="${memes[randomIndex]}" width="300">`;
+        }
+    </script>
+</body>
+</html>
